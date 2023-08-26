@@ -27,11 +27,11 @@ ADD conda/ /conf/
 
 # create a conda env for each yaml config
 RUN CONDA_DIR="/opt/conda" && \
-    for file in $(ls /conf); do mamba env create --file /conf/$file; done
+    for file in $(ls /conf); do conda env create --file /conf/$file; done
 
 # clean up unused and cached pkgs
 RUN CONDA_DIR="/opt/conda" && \
-    mamba clean --all --yes && \
+    conda clean --all --yes && \
     rm -rf $CONDA_DIR/conda-meta && \
     rm -rf $CONDA_DIR/include && \
     rm -rf $CONDA_DIR/lib/python3.*/site-packages/pip && \
