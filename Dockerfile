@@ -4,6 +4,10 @@ WORKDIR /NGStools/
 RUN apt-get update
 RUN apt-get install -y git make libatlas-base-dev wget g++ build-essential autoconf libgsl-dev zlib1g-dev
 
+# Install mamba
+RUN wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+RUN bash Mambaforge-$(uname)-$(uname -m).sh
+
 #GET FastANI
 RUN git clone https://github.com/ParBLiSS/FastANI
 
@@ -27,11 +31,11 @@ ADD conda/ /conf/
 
 # create a conda env for each yaml config
 RUN CONDA_DIR="/opt/conda" && \
-    for file in $(ls /conf); do conda env create --file /conf/$file; done
+    for file in $(ls /conf); do mamba env create --file /conf/$file; done
 
 # clean up unused and cached pkgs
 RUN CONDA_DIR="/opt/conda" && \
-    conda clean --all --yes && \
+    mamba clean --all --yes && \
     rm -rf $CONDA_DIR/conda-meta && \
     rm -rf $CONDA_DIR/include && \
     rm -rf $CONDA_DIR/lib/python3.*/site-packages/pip && \
