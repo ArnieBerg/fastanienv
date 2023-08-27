@@ -1,5 +1,7 @@
 #USE BLAST BINARIES FROM UMMIDOCK REPO 
-FROM ummidock/blast_binaries:2.6.0-binaries 
+#FROM ummidock/blast_binaries:2.6.0-binaries 
+FROM condaforge/mambaforge:4.12.0-0
+
 WORKDIR /NGStools/
 RUN apt-get update
 RUN apt-get install -y git make libatlas-base-dev wget g++ build-essential autoconf libgsl-dev zlib1g-dev
