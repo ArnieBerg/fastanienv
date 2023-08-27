@@ -7,8 +7,8 @@ RUN apt-get update
 RUN apt-get install -y git make libatlas-base-dev wget g++ build-essential autoconf libgsl-dev zlib1g-dev
 
 # Install mamba
-RUN wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-RUN bash Mambaforge-$(uname)-$(uname -m).sh
+#RUN wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+#RUN bash Mambaforge-$(uname)-$(uname -m).sh
 
 #GET FastANI
 RUN git clone https://github.com/ParBLiSS/FastANI
