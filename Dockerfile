@@ -35,6 +35,7 @@ ADD conda/ /conf/
 RUN CONDA_DIR="/opt/conda" && \
     for file in $(ls /conf); do mamba env create --file /conf/$file; done
 
+ADD libgsl.so.25 /opt/conda/envs/aniclustermap/lib/
 RUN ln -s /opt/conda/envs/aniclustermap/lib/libgsl.so.25.0.0 libgsl.so.25
 
 # clean up unused and cached pkgs
